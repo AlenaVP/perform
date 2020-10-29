@@ -19,13 +19,13 @@ import static by.minsk.perform.util.ValidationUtil.checkNew;
  */
 
 @Controller
-public class AlbumRestController {
+public class AlbumController {
 
-    private static final Logger log = LoggerFactory.getLogger(AlbumRestController.class);
+    private static final Logger log = LoggerFactory.getLogger(AlbumController.class);
 
     private final AlbumService service;
 
-    public AlbumRestController(AlbumService service) {
+    public AlbumController(AlbumService service) {
         this.service = service;
     }
 

@@ -4,7 +4,7 @@ import by.minsk.perform.model.AbstractBaseEntity;
 
 /**
  * @author Alena_Papruha
- * @version 1.3
+ * @version 1.1
  * @since 28 Oct, 2020
  */
 

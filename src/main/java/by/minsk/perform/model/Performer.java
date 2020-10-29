@@ -67,8 +67,8 @@ public class Performer extends AbstractNamedEntity {
     public String toString() {
         return "Performer{" +
                 "id=" + id +
-                ", name='" + name +
-                ", origin='" + origin +
+                ", name=" + name +
+                ", origin=" + origin +
                 ", year=" + year +
                 ", albums=" + albums +
                 '}';

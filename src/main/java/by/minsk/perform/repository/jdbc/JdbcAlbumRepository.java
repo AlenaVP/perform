@@ -1,6 +1,5 @@
 package by.minsk.perform.repository.jdbc;
 
-import by.minsk.perform.mapper.AlbumMapper;
 import by.minsk.perform.model.Album;
 import by.minsk.perform.repository.AlbumRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,12 +23,13 @@ import java.util.List;
 @Repository
 public class JdbcAlbumRepository implements AlbumRepository {
 
-    private static RowMapper<Album> ROW_MAPPER = new AlbumMapper();
+    private final RowMapper<Album> albumRowMapper;
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public JdbcAlbumRepository(JdbcTemplate jdbcTemplate) {
+    public JdbcAlbumRepository(JdbcTemplate jdbcTemplate, RowMapper<Album> albumRowMapper) {
         this.jdbcTemplate = jdbcTemplate;
+        this.albumRowMapper = albumRowMapper;
     }
 
     @Override
@@ -53,8 +53,7 @@ public class JdbcAlbumRepository implements AlbumRepository {
         } else {
             PreparedStatementCreator preparedStatementCreator = connection -> {
                 PreparedStatement preparedStatement = connection.prepareStatement(
-                        "UPDATE albums SET name = ?, year = ?, tracks = ? " +
-                                "WHERE id = ? AND performer_id = ?"
+                        "UPDATE albums SET name = ?, year = ?, tracks = ? WHERE id = ? AND performer_id = ?"
                 );
                 preparedStatement.setString(1, album.getName());
                 preparedStatement.setInt(2, album.getYear());
@@ -76,13 +75,14 @@ public class JdbcAlbumRepository implements AlbumRepository {
 
     @Override
     public Album get(long id, long performerId) {
-        List<Album> albums = jdbcTemplate.query(
-                "SELECT * FROM albums WHERE id = ? AND performer_id = ?", ROW_MAPPER, id, performerId);
-        return DataAccessUtils.singleResult(albums); //CollectionUtils.isEmpty(albums) ? null : albums.get(0);
+        List<Album> albums = jdbcTemplate.query("SELECT * FROM albums WHERE id = ? AND performer_id = ?",
+                albumRowMapper, id, performerId);
+        return DataAccessUtils.singleResult(albums);
     }
 
     @Override
     public List<Album> getAll(long performerId) {
-        return jdbcTemplate.query("SELECT * FROM albums WHERE performer_id = ? ORDER BY name", ROW_MAPPER, performerId);
+        return jdbcTemplate.query("SELECT * FROM albums WHERE performer_id = ? ORDER BY name",
+                albumRowMapper, performerId);
     }
 }

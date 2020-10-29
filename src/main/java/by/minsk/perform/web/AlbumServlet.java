@@ -2,7 +2,7 @@ package by.minsk.perform.web;
 
 import by.minsk.perform.model.Album;
 import by.minsk.perform.util.Util;
-import by.minsk.perform.web.album.AlbumRestController;
+import by.minsk.perform.web.album.AlbumController;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.util.StringUtils;
@@ -23,12 +23,12 @@ import java.util.Objects;
 public class AlbumServlet extends HttpServlet {
 
     private ConfigurableApplicationContext springContext;
-    private AlbumRestController albumController;
+    private AlbumController albumController;
 
     @Override
     public void init() throws ServletException {
         springContext = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml");
-        albumController = springContext.getBean(AlbumRestController.class);
+        albumController = springContext.getBean(AlbumController.class);
     }
 
     @Override

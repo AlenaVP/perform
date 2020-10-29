@@ -1,5 +1,6 @@
 package by.minsk.perform.model;
 
+import java.time.Year;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +20,7 @@ public class Album extends AbstractNamedEntity {
     }
 
     public Album(String name) {
-        this(null, name, 2020, Collections.emptyList());
+        this(null, name, Year.now().getValue(), Collections.emptyList());
     }
 
     public Album(String name, int year, String... tracks) {
@@ -27,7 +28,7 @@ public class Album extends AbstractNamedEntity {
     }
 
     public Album(Long id, String name, String... tracks) {
-        this(id, name, 2020, Arrays.asList(tracks));
+        this(id, name, Year.now().getValue(), Arrays.asList(tracks));
     }
 
     public Album(Long id, String name, int year, List<String> tracks) {
@@ -56,7 +57,7 @@ public class Album extends AbstractNamedEntity {
     public String toString() {
         return "Album{" +
                 "id=" + id +
-                ", name='" + name +
+                ", name=" + name +
                 ", year=" + year +
                 ", tracks=" + tracks +
                 '}';

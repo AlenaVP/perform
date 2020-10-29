@@ -4,6 +4,7 @@ import by.minsk.perform.model.Album;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -15,15 +16,19 @@ import java.util.Arrays;
  */
 
 @Component
-public class AlbumMapper implements RowMapper<Album> {
+public class AlbumRowMapper implements RowMapper<Album> {
 
     @Override
     public Album mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-        Object[] objArray = (Object[]) rs.getArray("tracks").getArray();
-        String[] tracks = new String[objArray.length];
-        for (int i = 0; i < objArray.length; i++) {
-            tracks[i] = objArray[i].toString();
+        String[] tracks = new String[0];
+        Array rsArray = rs.getArray("tracks");
+        if (rsArray != null) {
+            Object[] objArray = (Object[]) rsArray.getArray();
+            tracks = new String[objArray.length];
+            for (int i = 0; i < objArray.length; i++) {
+                tracks[i] = objArray[i] != null ? objArray[i].toString() : null;
+            }
         }
         return new Album(
                 rs.getLong("id"),
