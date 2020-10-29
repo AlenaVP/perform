@@ -26,4 +26,14 @@
         <url-pattern>/performers</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>albumServlet</servlet-name>
+        <servlet-class>by.minsk.perform.web.AlbumServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>albumServlet</servlet-name>
+        <url-pattern>/albums</url-pattern>
+    </servlet-mapping>
+
 </web-app>
