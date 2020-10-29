@@ -16,9 +16,9 @@ import static org.slf4j.LoggerFactory.getLogger;
  * @since 26 Oct, 2020
  */
 
-public class PerformServlet extends HttpServlet {
+public class PerformerServlet extends HttpServlet {
 
-    private static final Logger log = getLogger(PerformServlet.class);
+    private static final Logger log = getLogger(PerformerServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

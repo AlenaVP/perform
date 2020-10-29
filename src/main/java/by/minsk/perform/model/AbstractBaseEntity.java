@@ -4,8 +4,8 @@ import org.springframework.util.Assert;
 
 /**
  * @author Alena_Papruha
- * @version 1.0
- * @since 25 Oct, 2020
+ * @version 1.1
+ * @since 26 Oct, 2020
  */
 
 public abstract class AbstractBaseEntity {
@@ -17,19 +17,19 @@ public abstract class AbstractBaseEntity {
     protected AbstractBaseEntity() {
     }
 
-    protected AbstractBaseEntity(long id) {
+    protected AbstractBaseEntity(Long id) {
         this.id = id;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long id() {
+    public Long id() {
         Assert.notNull(id, "Entity must has id");
         return id;
     }

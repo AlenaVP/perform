@@ -2,8 +2,8 @@ package by.minsk.perform.model;
 
 /**
  * @author Alena_Papruha
- * @version 1.0
- * @since 25 Oct, 2020
+ * @version 1.1
+ * @since 26 Oct, 2020
  */
 
 public class AbstractNamedEntity extends AbstractBaseEntity {
@@ -13,7 +13,7 @@ public class AbstractNamedEntity extends AbstractBaseEntity {
     protected AbstractNamedEntity() {
     }
 
-    protected AbstractNamedEntity(long id, String name) {
+    protected AbstractNamedEntity(Long id, String name) {
         super(id);
         this.name = name;
     }

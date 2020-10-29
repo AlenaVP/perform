@@ -15,8 +15,8 @@ import java.util.List;
 
 /**
  * @author Alena_Papruha
- * @version 1.0
- * @since 25 Oct, 2020
+ * @version 1.1
+ * @since 26 Oct, 2020
  */
 
 @Repository
@@ -45,9 +45,10 @@ public class JdbcUserRepository implements UserRepository {
 
         if (user.isNew()) {
             Number newKey = insertUser.executeAndReturnKey(parameterSource);
-            user.setId(newKey.intValue());
+            user.setId(newKey.longValue());
         } else if (namedParameterJdbcTemplate.update(
-                "UPDATE userS SET name = :name, email = : email, password = :password, registered = :registered, enabled = :enabled WHERE id = :id", parameterSource) == 0) {
+                "UPDATE users SET name = :name, email = : email, password = :password, registered = :registered, " +
+                        "enabled = :enabled WHERE id = :id", parameterSource) == 0) {
             return null;
         }
         return user;

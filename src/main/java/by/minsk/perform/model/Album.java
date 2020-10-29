@@ -1,46 +1,54 @@
 package by.minsk.perform.model;
 
-import java.time.Year;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * @author Alena_Papruha
- * @version 1.0
- * @since 25 Oct, 2020
+ * @version 1.1
+ * @since 28 Oct, 2020
  */
 
 public class Album extends AbstractNamedEntity {
 
-    private Year year;
-    List<Track> tracks;
+    private int year;
+    private List<String> tracks;
 
     public Album() {
     }
 
-    public Album(long id, String name, Track... tracks) {
-        this(id, name, Year.now(), Arrays.asList(tracks));
+    public Album(String name) {
+        this(null, name, 2020, Collections.emptyList());
     }
 
-    public Album(long id, String name, Year year, List<Track> tracks) {
+    public Album(String name, int year, String... tracks) {
+        this(null, name, year, Arrays.asList(tracks));
+    }
+
+    public Album(Long id, String name, String... tracks) {
+        this(id, name, 2020, Arrays.asList(tracks));
+    }
+
+    public Album(Long id, String name, int year, List<String> tracks) {
         super(id, name);
         this.year = year;
         this.tracks = tracks;
     }
 
-    public Year getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(Year year) {
+    public void setYear(int year) {
         this.year = year;
     }
 
-    public List<Track> getTracks() {
+    public List<String> getTracks() {
         return tracks;
     }
 
-    public void setTracks(List<Track> tracks) {
+    public void setTracks(List<String> tracks) {
         this.tracks = tracks;
     }
 

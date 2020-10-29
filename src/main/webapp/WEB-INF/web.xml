@@ -17,12 +17,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>performServlet</servlet-name>
-        <servlet-class>by.minsk.perform.web.PerformServlet</servlet-class>
+        <servlet-name>performerServlet</servlet-name>
+        <servlet-class>by.minsk.perform.web.PerformerServlet</servlet-class>
         <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>performServlet</servlet-name>
+        <servlet-name>performerServlet</servlet-name>
         <url-pattern>/performers</url-pattern>
     </servlet-mapping>
 
